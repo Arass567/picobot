@@ -18,6 +18,11 @@ This module adds a revenue-first HTTP API for urgent slot filling.
    - `export AZIMUTPLUS_API_KEYS='old-key,new-key'` (optional, rotation supported)
    - `export AZIMUTPLUS_WEBHOOK_SECRETS='old-secret,new-secret'` (optional, rotation supported)
    - `export AZIMUTPLUS_ADMIN_TOKEN='change-me-admin'` (optional, enables runtime rotation endpoint)
+   - `export AZIMUTPLUS_WHATSAPP_PROVIDER='mock|twilio'` (optional, default `mock`)
+   - If `twilio`:
+     - `export AZIMUTPLUS_WHATSAPP_TWILIO_ACCOUNT_SID='ACxxxx'`
+     - `export AZIMUTPLUS_WHATSAPP_TWILIO_AUTH_TOKEN='xxxxx'`
+     - `export AZIMUTPLUS_WHATSAPP_TWILIO_FROM='whatsapp:+14155238886'`
    - `export AZIMUTPLUS_RATE_LIMIT_PER_MINUTE='180'` (optional)
    - `export AZIMUTPLUS_RATE_LIMIT_WINDOW_SECONDS='60'` (optional)
 3. Start API:
@@ -25,8 +30,12 @@ This module adds a revenue-first HTTP API for urgent slot filling.
 
 Schema bootstrap and demo customer seeding are executed automatically on startup.
 
-## WhatsApp mode (MVP)
-Outgoing messages are mocked in logs (`MockSender`). Incoming replies are accepted through `/api/v1/webhooks/whatsapp`.
+## WhatsApp mode
+Outgoing messages support:
+- `mock` (default): logs only
+- `twilio`: real send via Twilio WhatsApp API
+
+Incoming replies are accepted through `/api/v1/webhooks/whatsapp`.
 The first YES-like reply locks the campaign and increments daily recovered revenue KPI.
 
 If `AZIMUTPLUS_API_KEY` or `AZIMUTPLUS_API_KEYS` is set, all non-health endpoints require header:

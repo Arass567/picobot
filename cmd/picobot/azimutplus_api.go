@@ -113,7 +113,12 @@ func newAzimutPlusAPICmd() *cobra.Command {
 				return fmt.Errorf("invalid timezone %q: %w", timezone, err)
 			}
 
-			svc := service.New(repo, whatsapp.MockSender{}, businessID, loc)
+			waSender, err := whatsapp.NewSenderFromEnv()
+			if err != nil {
+				return fmt.Errorf("configure whatsapp sender: %w", err)
+			}
+
+			svc := service.New(repo, waSender, businessID, loc)
 			server := azhttp.NewServer(svc, azhttp.Options{
 				APIKeysCSV:             apiKey,
 				WebhookSecretsCSV:      webhookSecret,

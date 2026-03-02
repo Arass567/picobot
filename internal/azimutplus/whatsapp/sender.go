@@ -4,6 +4,7 @@ import (
 	"context"
 	"fmt"
 	"log"
+	"strings"
 	"time"
 )
 
@@ -19,4 +20,14 @@ func (m MockSender) SendCampaignMessage(_ context.Context, customerID int64, pho
 		return fmt.Errorf("customer %d has empty phone", customerID)
 	}
 	return nil
+}
+
+func BuildCampaignMessage(campaignID int64, offerLabel string, slotTime time.Time) string {
+	slot := slotTime.Format("02/01 15:04")
+	return strings.TrimSpace(fmt.Sprintf(
+		"AzimutPlus: un créneau vient de se libérer (%s). Offre: %s. Répondez OUI pour réserver. Réf campagne #%d.",
+		slot,
+		offerLabel,
+		campaignID,
+	))
 }

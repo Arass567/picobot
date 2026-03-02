@@ -6,9 +6,9 @@ Portée: backend Go AzimutPlus, frontend React, intégration Nginx/VPS.
 ## 1. Findings (ordre de sévérité)
 
 ### Haut
-1. `internal/azimutplus/whatsapp`: envoi WhatsApp en `MockSender`.
-- Impact: pas d'envoi réel, valeur business limitée au mode démo.
-- Action: intégrer provider WhatsApp réel (Meta API/Twilio/bridge validé).
+1. Provider WhatsApp réel dépend de la configuration runtime (`AZIMUTPLUS_WHATSAPP_PROVIDER` + creds Twilio).
+- Impact: si mal configuré, fallback/erreur de démarrage et perte de capacité d'envoi réel.
+- Action: sécuriser le provisioning secrets (vault / process d'onboarding client).
 
 ### Moyen
 1. Route secrète seule (sans PIN/Access).
@@ -45,7 +45,8 @@ Portée: backend Go AzimutPlus, frontend React, intégration Nginx/VPS.
   - proxy Nginx `/<secret_slug>/api/` vers backend loopback
   - blocage des chemins publics `/azimutplus` et `/api/v1`
   - headers sécurité + CSP sur route secrète
-  - backup Postgres quotidien + rétention 7 jours
+- backup Postgres quotidien + rétention 7 jours
+- provider WhatsApp Twilio implémenté (réel) + mode mock conservé
 
 ## 3. Vérifications exécutées
 - Tests Go ciblés AzimutPlus: OK

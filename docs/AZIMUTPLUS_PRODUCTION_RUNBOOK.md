@@ -34,6 +34,10 @@ Ce document décrit le déploiement production AzimutPlus intégré à `azimutco
 - `AZIMUTPLUS_ALLOWED_ORIGINS`
 - `AZIMUTPLUS_RATE_LIMIT_PER_MINUTE`
 - `AZIMUTPLUS_RATE_LIMIT_WINDOW_SECONDS`
+- `AZIMUTPLUS_WHATSAPP_PROVIDER` (`mock` par défaut, `twilio` pour envoi réel)
+- `AZIMUTPLUS_WHATSAPP_TWILIO_ACCOUNT_SID` (si provider=twilio)
+- `AZIMUTPLUS_WHATSAPP_TWILIO_AUTH_TOKEN` (si provider=twilio)
+- `AZIMUTPLUS_WHATSAPP_TWILIO_FROM` (si provider=twilio, ex: `whatsapp:+14155238886`)
 
 ## 5. Déploiement
 
@@ -148,5 +152,5 @@ docker compose --env-file /opt/azimutplus/.env up -d --build azimutplus-api
   - vérifier `try_files` dans location `/<secret_slug>/`
 
 ## 12. Limites actuelles
-- Le provider WhatsApp reste en `MockSender` (MVP démonstration).
+- Si `AZIMUTPLUS_WHATSAPP_PROVIDER=mock`, aucun message WhatsApp réel n'est envoyé.
 - Les règles Cloudflare cache/WAF ne sont pas provisionnées automatiquement dans ce repo.

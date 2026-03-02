@@ -49,21 +49,13 @@ function ProspectView({ onOpenOperator }) {
         </p>
 
         <div className="mt-8 flex flex-wrap gap-3">
-          <a
-            href={DEMO_URL}
-            target="_blank"
-            rel="noreferrer"
-            className="inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-orange-500 to-orange-600 px-6 py-3.5 text-sm font-bold text-white shadow-lg shadow-orange-500/25 transition hover:scale-[1.01] hover:shadow-orange-500/40"
-          >
-            Réserver une démo gratuite
-            <ArrowRight size={16} />
-          </a>
           <button
             type="button"
             onClick={onOpenOperator}
-            className="rounded-xl border border-slate-700/70 bg-slate-900/60 px-5 py-3.5 text-sm font-semibold text-slate-200 transition hover:border-slate-500 hover:text-white"
+            className="inline-flex items-center gap-2 rounded-xl border border-emerald-500/40 bg-emerald-500/15 px-5 py-3.5 text-sm font-bold text-emerald-200 shadow-lg shadow-emerald-500/15 transition hover:border-emerald-400/60 hover:bg-emerald-500/20 hover:text-emerald-100"
           >
-            Accès opérateur
+            Opérateur intelligent
+            <ArrowRight size={16} />
           </button>
           <a
             href="https://azimutcode.com"
@@ -72,6 +64,9 @@ function ProspectView({ onOpenOperator }) {
             Retour AzimutCode
           </a>
         </div>
+        <p className="mt-3 text-xs uppercase tracking-[0.15em] text-emerald-300/80">
+          Interface IA propulsée par le moteur Picobot
+        </p>
       </div>
 
       <section className="mt-5 grid gap-4 md:grid-cols-3">

@@ -216,7 +216,26 @@ picobot memory append today|long -c "" # append to memory
 picobot memory write long -c ""        # overwrite long-term memory
 picobot memory recent --days N         # recent N days
 picobot memory rank -q "query"         # semantic memory search
+picobot azimutplus-api --database-url "postgres://..."  # start AzimutPlus MVP API
 ```
+
+## AzimutPlus MVP API
+
+This fork includes a B2B revenue recovery module for urgent slot filling.
+
+- Backend module: `internal/azimutplus/`
+- HTTP server command: `picobot azimutplus-api`
+- Frontend dashboard: `web/` (React + Vite + Tailwind)
+
+Core flow:
+1. Create campaign with `POST /api/v1/campaigns/fill-slot`
+2. Trigger targeted send with `POST /api/v1/campaigns/{id}/send`
+3. Receive WhatsApp reply via `POST /api/v1/webhooks/whatsapp`
+4. First YES locks the slot and updates KPI `CA récupéré`
+
+Production docs:
+- [`docs/AZIMUTPLUS_PRODUCTION_RUNBOOK.md`](docs/AZIMUTPLUS_PRODUCTION_RUNBOOK.md)
+- [`docs/AUDIT_TECHNIQUE_CODE_REVIEW_2026-03-02.md`](docs/AUDIT_TECHNIQUE_CODE_REVIEW_2026-03-02.md)
 
 ## Run on Minimal Hardware
 

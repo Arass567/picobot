@@ -37,3 +37,6 @@ Thumbs.db
 # Misc
 *.log
 *.psd
+# Web
+web/node_modules/
+web/dist/

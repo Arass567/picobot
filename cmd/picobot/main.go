@@ -250,6 +250,7 @@ func NewRootCmd() *cobra.Command {
 	}
 	gatewayCmd.Flags().StringP("model", "M", "", "Model to use (overrides config/provider default)")
 	rootCmd.AddCommand(gatewayCmd)
+	rootCmd.AddCommand(newAzimutPlusAPICmd())
 
 	// memory subcommands: read, append, write, recent
 	memoryCmd := &cobra.Command{

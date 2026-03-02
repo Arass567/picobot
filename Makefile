@@ -1,4 +1,4 @@
-.PHONY: build, clean
+.PHONY: build, clean, demo-secure, demo-oneclick
 
 build: linux_amd64 linux_arm64 mac_arm64 linux_amd64_lite linux_arm64_lite mac_arm64_lite
 		@echo "All builds completed."
@@ -23,3 +23,9 @@ mac_arm64_lite:
 
 clean:
 	rm -f picobot_linux_amd64 picobot_linux_arm64 picobot_mac_arm64 picobot_linux_amd64_lite picobot_linux_arm64_lite picobot_mac_arm64_lite
+
+demo-secure:
+	./scripts/demo_secure.sh
+
+demo-oneclick:
+	./scripts/demo_one_click.sh

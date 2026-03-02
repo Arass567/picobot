@@ -65,7 +65,7 @@ function ProspectView({ onOpenOperator }) {
           </a>
         </div>
         <p className="mt-3 text-xs uppercase tracking-[0.15em] text-emerald-300/80">
-          Interface IA propulsée par le moteur Picobot
+          Interface intelligente dédiée au remplissage express
         </p>
       </div>
 
